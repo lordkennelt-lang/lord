@@ -1,0 +1,753 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+  text-decoration: none;
+  list-style: none;
+  -webkit-font-smoothing: antialiased;
+}
+
+:root {
+  --bg-color: #f8fafc;
+  --second-bg-color: #f1f5f9;
+  --card-bg: rgba(255, 255, 255, 0.9);
+  --text-color: #0f172a;
+  --text-secondary: #475569;
+  --main-color: #0284c7;
+  --border-color: #e2e8f0;
+  --border-accent: rgba(2, 132, 199, 0.3);
+}
+
+body {
+  color: var(--text-color);
+  min-height: 100vh;
+  line-height: 1.6;
+  background-color: #f8fafc;
+  background-image:
+    radial-gradient(at 0% 0%, rgba(2, 132, 199, 0.08) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(14, 165, 233, 0.08) 0px, transparent 50%);
+  background-attachment: fixed;
+}
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 20px 10%;
+  background: rgba(248, 250, 252, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 100;
+  border-bottom: 2px solid var(--border-color);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+}
+.menu-toggle {
+    display: none;
+    font-size: 2.6rem;
+    color: #ffffff; /* palitan ayon sa kulay ng header mo */
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    header nav {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: #ffffff; /* palitan ayon sa theme mo */
+        padding: 1rem 0;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    header nav.active {
+        display: flex;
+    }
+
+    header nav a {
+        display: block;
+        margin: 0;
+        padding: 1.2rem 0;
+    }
+}
+
+.logo {
+  font-size: 1.6rem;
+  color: var(--text-color);
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  cursor: pointer;
+}
+
+header nav a {
+  position: relative;
+  font-size: 0.95rem;
+  color: var(--text-color);
+  font-weight: 500;
+  margin-left: 30px;
+  letter-spacing: 0.3px;
+  transition: color 0.3s ease;
+}
+
+header nav a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 0;
+    height: 2px;
+    background: var(--main-color);
+    box-shadow: 0 0 8px rgba(2, 132, 199, 0.4);
+    transition: width 0.3s ease-in-out;
+}
+
+header nav a:hover::after,
+header nav a.active::after {
+    width: 100%;
+}
+
+header nav a:hover,
+header nav a.active {
+    color: var(--main-color);
+}
+
+.dashboard {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 90px 10% 0;
+  border-bottom: 2px solid var(--border-color);
+}
+
+.dashboard-content {
+  max-width: 600px;
+  border-left: 4px solid var(--main-color);
+  padding-left: 20px;
+}
+
+.dashboard-content h1 {
+  font-size: 3.25rem;
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -1px;
+  color: var(--text-color);
+  padding-bottom: 12px;
+  border-bottom: 1px dashed var(--border-color);
+}
+
+.dashboard-content h1 span {
+  color: var(--main-color);
+}
+
+.dashboard-content h3 {
+  font-size: 1.85rem;
+  font-weight: 600;
+  margin: 15px 0 10px;
+  color: var(--text-color);
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.dashboard-content h3 span {
+  color: var(--main-color);
+}
+
+.dashboard-content p {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  font-weight: 400;
+  line-height: 1.7;
+  padding: 15px 0;
+  border-bottom: 1px solid var(--border-color);
+  margin-bottom: 25px;
+}
+
+.typing-text {
+  font-size: 1.85rem;
+  font-weight: 700;
+  margin: 10px 0;
+  white-space: nowrap;
+}
+
+.typing-text span {
+  position: relative;
+  display: inline-block;
+  color: var(--main-color);
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 3px solid var(--main-color);
+  vertical-align: bottom;
+  animation: typing 3s steps(13) infinite alternate, blink 0.75s step-end infinite;
+}
+
+@keyframes typing {
+  from { width: 0; }
+  to { width: 13ch; }
+}
+
+@keyframes blink {
+  from, to { border-color: transparent; }
+  50% { border-color: var(--main-color); }
+}
+
+.social-icons {
+  padding-top: 10px;
+}
+
+.social-icons a {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 42px;
+  height: 42px;
+  background: var(--card-bg);
+  border: 2px solid var(--main-color);
+  border-radius: 50%;
+  font-size: 1.2rem;
+  color: var(--main-color);
+  margin: 0 15px 20px 0;
+  transition: 0.3s ease;
+}
+
+.social-icons a:hover {
+  background: var(--main-color);
+  color: #ffffff;
+  box-shadow: 0 4px 15px rgba(2, 132, 199, 0.3);
+}
+
+.dashboard-img {
+  padding: 10px;
+  border: 2px dashed var(--border-accent);
+  border-radius: 50%;
+}
+
+.dashboard-img img {
+  width: 35vw;
+  max-width: 380px;
+  border-radius: 50%;
+  box-shadow: 0 12px 30px rgba(2, 132, 199, 0.15);
+  object-fit: cover;
+  display: block;
+  border: 3px solid #ffffff;
+}
+
+.heading {
+    font-size: 2.25rem;
+    font-weight: 700;
+    margin-bottom: 30px;
+    color: var(--text-color);
+    letter-spacing: -0.5px;
+    text-align: center;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.heading::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background: var(--main-color);
+    border-radius: 2px;
+}
+
+.heading span {
+    color: var(--main-color);
+}
+
+.about-section {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 80px 20px;
+    background: rgba(241, 245, 249, 0.4);
+    border-bottom: 2px solid var(--border-color);
+}
+
+.about-wrapper {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.about-card,
+.quizzes-card,
+.midterm-card,
+.finals-card {
+    background: var(--card-bg);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.03);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.about-card {
+    padding: 35px;
+}
+
+.info-group {
+    margin-bottom: 18px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.info-group:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.info-group label {
+    display: block;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    color: var(--main-color);
+    letter-spacing: 1.2px;
+    margin-bottom: 4px;
+    font-weight: 700;
+}
+
+.info-group p {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    font-weight: 400;
+}
+
+.quizzes-section {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 80px 20px;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.quizzes-container {
+display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  align-items: stretch; /* Sinisigurong pantay-pantay ang taas ng mga card sa isang row */  
+}
+
+.quizzes-card {
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  width: 260px;
+  display: flex;
+  flex-direction: column; /* Para maayos ang pag-aayos mula taas pababa */
+  justify-content: space-between; /* Itutulak ang button sa pinakailalim kung kulang ang content */
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+  overflow: hidden;
+}
+
+.quizzes-card:hover,
+.midterm-card:hover,
+.finals-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 15px 35px rgba(2, 132, 199, 0.12);
+    border-color: var(--main-color);
+}
+
+.quizzes-img {
+    width: 100%;
+    height: 380px;
+    overflow: hidden;
+    background-color: #e2e8f0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.quizzes-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Babagay ito para mapuno ang buong lagayan */
+    transition: transform 0.3s ease;
+}
+
+.quizzes-card:hover .quiz-img img {
+    transform: scale(1.03);
+}
+
+.quizzes-info {
+    padding: 20px;
+    text-align: center;
+}
+
+.quizzes-info h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--main-color);
+    margin-bottom: 6px;
+    padding-bottom: 6px;
+    border-bottom: 1px dashed var(--border-color);
+}
+
+.quizzes-info p {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    font-weight: 400;
+    margin-top: 6px;
+}
+
+.longquizzes-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+    padding: 2rem;
+    border: 2px solid #ccc; /* temporary, para makita mo */
+}
+
+.longquizzes-card {
+    background: #fff;
+    border-radius: 1rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,.15);
+    overflow: hidden;
+    width: 300px;
+}
+
+.longquizzes-img img {
+    width: 100%;
+    display: block;
+}
+
+.longquizzes-info {
+    padding: 1rem;
+    text-align: center;
+}
+
+.midterm-section {
+  padding: 5rem 2rem;
+  background: rgba(241, 245, 249, 0.4);
+  color: var(--text-color);
+  border-bottom: 2px solid var(--border-color);
+  clear: both;
+}
+
+.finals-section {
+  padding: 5rem 2rem;
+  color: var(--text-color);
+  clear: both;
+}
+
+.midterm-container,
+.finals-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 340px));
+  justify-content: center;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.midterm-card,
+.finals-card {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.midterm-img,
+.finals-img {
+  width: 100%;
+  height: 200px;
+  background-color: #e2e8f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.midterm-img img,
+.finals-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.finals-card:hover .finals-img img {
+  transform: scale(1.05);
+}
+
+.midterm-info,
+.finals-info {
+  padding: 1.5rem;
+  text-align: center;
+  flex-grow: 1;
+}
+
+.midterm-info h3,
+.finals-info h3 {
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  padding-bottom: 6px;
+  border-bottom: 1px dashed var(--border-color);
+  color: var(--text-color);
+}
+
+.midterm-info p,
+.finals-info p {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin-top: 6px;
+}
+
+.midterm-info p span,
+.finals-info p span {
+  color: var(--main-color);
+  font-weight: 700;
+}
+/* Card Action Buttons */
+.card-actions {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.btn-action {
+  padding: 5px 12px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  border: none;
+  transition: background 0.2s ease, transform 0.1s ease;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .dashboard {
+    flex-direction: column-reverse;
+    justify-content: center;
+    text-align: center;
+    padding-top: 120px;
+  }
+
+  .dashboard-content {
+    border-left: none;
+    padding-left: 0;
+  }
+
+  header {
+    padding: 15px 5%;
+  }
+
+  header nav a {
+    margin-left: 15px;
+    font-size: 0.85rem;
+  }
+
+  .dashboard-content h1 {
+    font-size: 2.25rem;
+  }
+
+  .dashboard-content h3,
+  .typing-text {
+    font-size: 1.35rem;
+  }
+
+  .heading {
+    font-size: 1.75rem;
+  }
+
+  .about-wrapper {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard-img img {
+    width: 60vw;
+    margin-bottom: 20px;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+}
+
+/* Para agad maitago ang binurang larawan nang walang blink */
+img.is-deleted {
+    display: none important;
+}
+
+/* Clean & Soft Light Theme for Cards */
+.quizzes-card,
+.lab-card,
+.midterm-card,
+.finals-card {
+    background: var(--card-bg);
+    border-radius: 16px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.03);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    overflow: hidden;
+}
+
+.quizzes-card:hover,
+.lab-card:hover,
+.midterm-card:hover,
+.finals-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 15px 35px rgba(2, 132, 199, 0.12);
+    border-color: var(--main-color);
+}
+
+/* Container alignment */
+.lab-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+    padding: 20px 0;
+}
+
+/* Lab Card size alignment */
+.lab-card {
+    width: 300px;
+}
+
+/* Image container styling */
+.lab-img {
+    width: 100%;
+    height: 380px;
+    overflow: hidden;
+    background-color: #e2e8f0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.lab-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+.lab-card:hover .lab-img img {
+    transform: scale(1.03);
+}
+
+/* Card Text Styling */
+.lab-info {
+    padding: 20px;
+    text-align: center;
+}
+
+.lab-info h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--main-color);
+    margin-bottom: 6px;
+    padding-bottom: 6px;
+    border-bottom: 1px dashed var(--border-color);
+}
+
+.lab-info p {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    font-weight: 400;
+    margin-top: 6px;
+}
+
+.view-btn {
+    margin-top: 10px;
+    padding: 8px 18px;
+    background: transparent;
+    color: inherit;
+    border: 2px solid currentColor;
+    border-radius: 6px;
+    font-size: 1.4rem;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.view-btn:hover {
+    background: #fff;
+    color: #000;
+}
+
+/* Palitan o idagdag ito sa iyong CSS */
+.quizzes-img img,
+.longquizzes-img img,
+.lab-img img,
+.midterm-img img,
+.finals-img img {
+    cursor: zoom-in;
+} 
+
+.image-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: rgba(0, 0, 0, 0.9);
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 20px;
+}
+.image-modal.open {
+    display: flex;
+}
+.image-modal-content {
+    max-width: 95%;
+    max-height: 85vh;
+    object-fit: contain;
+    border-radius: 8px;
+}
+.image-modal-caption {
+    color: #fff;
+    margin-top: 12px;
+    font-size: 1.6rem;
+}
+.image-modal-close {
+    position: absolute;
+    top: 15px;
+    right: 30px;
+    color: #fff;
+    font-size: 4rem;
+    cursor: pointer;
+    line-height: 1;
+}
+.image-modal-close:hover {
+    color: #ccc;
+}
