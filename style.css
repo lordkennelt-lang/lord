@@ -1,0 +1,758 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+  text-decoration: none;
+  list-style: none;
+  -webkit-font-smoothing: antialiased;
+}
+
+:root {
+  --bg-color: #f8fafc;
+  --second-bg-color: #f1f5f9;
+  --card-bg: rgba(255, 255, 255, 0.9);
+  --text-color: #0f172a;
+  --text-secondary: #475569;
+  --main-color: #0284c7;
+  --border-color: #e2e8f0;
+  --border-accent: rgba(2, 132, 199, 0.3);
+}
+
+body {
+  color: var(--text-color);
+  min-height: 100vh;
+  line-height: 1.6;
+  background-color: #f8fafc;
+  background-image:
+    radial-gradient(at 0% 0%, rgba(2, 132, 199, 0.08) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(14, 165, 233, 0.08) 0px, transparent 50%);
+  background-attachment: fixed;
+}
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 20px 10%;
+  background: rgba(248, 250, 252, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 100;
+  border-bottom: 2px solid var(--border-color);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+}
+.menu-toggle {
+    display: none;
+    font-size: 2.6rem;
+    color: #ffffff; /* palitan ayon sa kulay ng header mo */
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    header nav {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: #ffffff; /* palitan ayon sa theme mo */
+        padding: 1rem 0;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    header nav.active {
+        display: flex;
+    }
+
+    header nav a {
+        display: block;
+        margin: 0;
+        padding: 1.2rem 0;
+    }
+}
+
+.logo {
+  font-size: 1.6rem;
+  color: var(--text-color);
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  cursor: pointer;
+}
+
+header nav a {
+  position: relative;
+  font-size: 0.95rem;
+  color: var(--text-color);
+  font-weight: 500;
+  margin-left: 30px;
+  letter-spacing: 0.3px;
+  transition: color 0.3s ease;
+}
+
+header nav a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 0;
+    height: 2px;
+    background: var(--main-color);
+    box-shadow: 0 0 8px rgba(2, 132, 199, 0.4);
+    transition: width 0.3s ease-in-out;
+}
+
+header nav a:hover::after,
+header nav a.active::after {
+    width: 100%;
+}
+
+header nav a:hover,
+header nav a.active {
+    color: var(--main-color);
+}
+
+.dashboard {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 90px 10% 0;
+  border-bottom: 2px solid var(--border-color);
+}
+
+.dashboard-content {
+  max-width: 600px;
+  border-left: 4px solid var(--main-color);
+  padding-left: 20px;
+}
+
+.dashboard-content h1 {
+  font-size: 3.25rem;
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -1px;
+  color: var(--text-color);
+  padding-bottom: 12px;
+  border-bottom: 1px dashed var(--border-color);
+}
+
+.dashboard-content h1 span {
+  color: var(--main-color);
+}
+
+.dashboard-content h3 {
+  font-size: 1.85rem;
+  font-weight: 600;
+  margin: 15px 0 10px;
+  color: var(--text-color);
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.dashboard-content h3 span {
+  color: var(--main-color);
+}
+
+.dashboard-content p {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  font-weight: 400;
+  line-height: 1.7;
+  padding: 15px 0;
+  border-bottom: 1px solid var(--border-color);
+  margin-bottom: 25px;
+}
+
+.typing-text {
+  font-size: 1.85rem;
+  font-weight: 700;
+  margin: 10px 0;
+  white-space: nowrap;
+}
+
+.typing-text span {
+  position: relative;
+  display: inline-block;
+  color: var(--main-color);
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 3px solid var(--main-color);
+  vertical-align: bottom;
+  animation: typing 3s steps(13) infinite alternate, blink 0.75s step-end infinite;
+}
+
+@keyframes typing {
+  from { width: 0; }
+  to { width: 13ch; }
+}
+
+@keyframes blink {
+  from, to { border-color: transparent; }
+  50% { border-color: var(--main-color); }
+}
+
+.social-icons {
+  padding-top: 10px;
+}
+
+.social-icons a {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 42px;
+  height: 42px;
+  background: var(--card-bg);
+  border: 2px solid var(--main-color);
+  border-radius: 50%;
+  font-size: 1.2rem;
+  color: var(--main-color);
+  margin: 0 15px 20px 0;
+  transition: 0.3s ease;
+}
+
+.social-icons a:hover {
+  background: var(--main-color);
+  color: #ffffff;
+  box-shadow: 0 4px 15px rgba(2, 132, 199, 0.3);
+}
+
+.dashboard-img {
+  padding: 10px;
+  border: 2px dashed var(--border-accent);
+  border-radius: 50%;
+}
+
+.dashboard-img img {
+  width: 35vw;
+  max-width: 380px;
+  border-radius: 50%;
+  box-shadow: 0 12px 30px rgba(2, 132, 199, 0.15);
+  object-fit: cover;
+  display: block;
+  border: 3px solid #ffffff;
+}
+
+.heading {
+    font-size: 2.25rem;
+    font-weight: 700;
+    margin-bottom: 30px;
+    color: var(--text-color);
+    letter-spacing: -0.5px;
+    text-align: center;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.heading::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background: var(--main-color);
+    border-radius: 2px;
+}
+
+.heading span {
+    color: var(--main-color);
+}
+
+.about-section {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 80px 20px;
+    background: rgba(241, 245, 249, 0.4);
+    border-bottom: 2px solid var(--border-color);
+}
+
+.about-wrapper {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.about-card,
+.quizzes-card,
+.midterm-card,
+.finals-card {
+    background: var(--card-bg);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.03);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.about-card {
+    padding: 35px;
+}
+
+.info-group {
+    margin-bottom: 18px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.info-group:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.info-group label {
+    display: block;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    color: var(--main-color);
+    letter-spacing: 1.2px;
+    margin-bottom: 4px;
+    font-weight: 700;
+}
+
+.info-group p {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    font-weight: 400;
+}
+
+.quizzes-section {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 80px 20px;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.quizzes-card:hover,
+.midterm-card:hover,
+.finals-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 15px 35px rgba(2, 132, 199, 0.12);
+    border-color: var(--main-color);
+}
+
+
+/* QUIZZES CONTAINER */
+.quizzes-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    align-items: stretch;
+    max-width: 1150px;
+    margin: 0 auto;
+    padding: 30px 20px;
+}
+
+/* QUIZZES CARD */
+.quizzes-card {
+    background: #ffffff;
+    border: 1px solid #e0e8f0;
+    border-radius: 15px;
+    width: 200px;
+    min-height: 350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    padding: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    transition: 0.3s ease;
+}
+
+/* CARD HOVER */
+.quizzes-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 18px rgba(0, 123, 255, 0.15);
+}
+
+/* QUIZ IMAGE */
+.quizzes-card img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+/* QUIZ TITLE */
+.quizzes-card h3 {
+    color: #0088cc;
+    font-size: 15px;
+    margin: 10px 0;
+}
+
+/* QUIZ DETAILS */
+.quizzes-card p {
+    font-size: 12px;
+    color: #555;
+    margin: 5px 0;
+}
+
+/* VIEW PHOTO BUTTON */
+.quizzes-card button {
+    padding: 8px 18px;
+    background: white;
+    border: 1px solid #14213d;
+    border-radius: 5px;
+    color: #14213d;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.quizzes-card button:hover {
+    background: #0088cc;
+    color: white;
+}
+
+/* RESPONSIVE */
+@media (max-width: 600px) {
+    .quizzes-container {
+        gap: 15px;
+    }
+
+    .quizzes-card {
+        width: 85%;
+        max-width: 260px;
+    }
+}
+
+
+/* SHARED CONTAINER DESIGN */
+.longquizzes-container,
+.lab-container,
+.midterm-container,
+.finals-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    align-items: stretch;
+    max-width: 1150px;
+    margin: 0 auto;
+    padding: 30px 20px;
+}
+
+/* SHARED CARD DESIGN */
+.longquizzes-card,
+.lab-card,
+.midterm-card,
+.finals-card {
+    background: #ffffff;
+    border: 1px solid #e0e8f0;
+    border-radius: 15px;
+    width: 200px;
+    min-height: 350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    padding: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    transition: 0.3s ease;
+}
+
+/* CARD HOVER */
+.longquizzes-card:hover,
+.lab-card:hover,
+.midterm-card:hover,
+.finals-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 18px rgba(0, 123, 255, 0.15);
+}
+
+/* IMAGES */
+.longquizzes-card img,
+.lab-card img,
+.midterm-card img,
+.finals-card img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+/* TITLES */
+.longquizzes-card h3,
+.lab-card h3,
+.midterm-card h3,
+.finals-card h3 {
+    color: #0088cc;
+    font-size: 15px;
+    margin: 10px 0;
+}
+
+/* DETAILS */
+.longquizzes-card p,
+.lab-card p,
+.midterm-card p,
+.finals-card p {
+    font-size: 12px;
+    color: #555;
+    margin: 5px 0;
+}
+
+/* BUTTONS */
+.longquizzes-card button,
+.lab-card button,
+.midterm-card button,
+.finals-card button {
+    padding: 8px 18px;
+    background: white;
+    border: 1px solid #14213d;
+    border-radius: 5px;
+    color: #14213d;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.longquizzes-card button:hover,
+.lab-card button:hover,
+.midterm-card button:hover,
+.finals-card button:hover {
+    background: #0088cc;
+    color: white;
+}
+
+/* RESPONSIVE */
+@media (max-width: 600px) {
+    .longquizzes-container,
+    .lab-container,
+    .midterm-container,
+    .finals-container {
+        gap: 15px;
+    }
+
+    .longquizzes-card,
+    .lab-card,
+    .midterm-card,
+    .finals-card {
+        width: 85%;
+        max-width: 260px;
+    }
+}
+  .dashboard-content {
+    border-left: none;
+    padding-left: 0;
+  }
+
+  header {
+    padding: 15px 5%;
+  }
+
+  header nav a {
+    margin-left: 15px;
+    font-size: 0.85rem;
+  }
+
+  .dashboard-content h1 {
+    font-size: 2.25rem;
+  }
+
+  .dashboard-content h3,
+  .typing-text {
+    font-size: 1.35rem;
+  }
+
+  .heading {
+    font-size: 1.75rem;
+  }
+
+  .about-wrapper {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard-img img {
+    width: 60vw;
+    margin-bottom: 20px;
+  }
+
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+}
+
+/* Para agad maitago ang binurang larawan nang walang blink */
+img.is-deleted {
+    display: none important;
+}
+
+/* Clean & Soft Light Theme for Cards */
+.quizzes-card,
+.lab-card,
+.midterm-card,
+.finals-card {
+    background: var(--card-bg);
+    border-radius: 16px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.03);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    overflow: hidden;
+}
+
+.quizzes-card:hover,
+.lab-card:hover,
+.midterm-card:hover,
+.finals-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 15px 35px rgba(2, 132, 199, 0.12);
+    border-color: var(--main-color);
+}
+
+/* Container alignment */
+.lab-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+    padding: 20px 0;
+}
+
+/* Lab Card size alignment */
+.lab-card {
+    width: 300px;
+}
+
+/* Image container styling */
+.lab-img {
+    width: 100%;
+    height: 380px;
+    overflow: hidden;
+    background-color: #e2e8f0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.lab-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+.lab-card:hover .lab-img img {
+    transform: scale(1.03);
+}
+
+/* Card Text Styling */
+.lab-info {
+    padding: 20px;
+    text-align: center;
+}
+
+.lab-info h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--main-color);
+    margin-bottom: 6px;
+    padding-bottom: 6px;
+    border-bottom: 1px dashed var(--border-color);
+}
+
+.lab-info p {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    font-weight: 400;
+    margin-top: 6px;
+}
+
+.view-btn {
+    margin-top: 10px;
+    padding: 8px 18px;
+    background: transparent;
+    color: inherit;
+    border: 2px solid currentColor;
+    border-radius: 6px;
+    font-size: 1.4rem;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.view-btn:hover {
+    background: #fff;
+    color: #000;
+}
+
+/* Palitan o idagdag ito sa iyong CSS */
+.quizzes-img img,
+.longquizzes-img img,
+.lab-img img,
+.midterm-img img,
+.finals-img img {
+    cursor: zoom-in;
+} 
+
+.image-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: rgba(0, 0, 0, 0.9);
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 20px;
+}
+.image-modal.open {
+    display: flex;
+}
+.image-modal-content {
+    max-width: 95%;
+    max-height: 85vh;
+    object-fit: contain;
+    border-radius: 8px;
+}
+.image-modal-caption {
+    color: #fff;
+    margin-top: 12px;
+    font-size: 1.6rem;
+}
+.image-modal-close {
+    position: absolute;
+    top: 15px;
+    right: 30px;
+    color: #fff;
+    font-size: 4rem;
+    cursor: pointer;
+    line-height: 1;
+}
+.image-modal-close:hover {
+    color: #ccc;
+}
